@@ -1,5 +1,5 @@
 -module(week1).
--export([perimeter/1, area/1, enclose/1, bits_tail_recurse/1, bits_direct_recurse/1]).
+-export([perimeter/1, area/1, enclose/1, bits/1, bits_direct_recurse/1]).
 -include_lib("eunit/include/eunit.hrl").
 
 %%
@@ -48,7 +48,7 @@ enclose({triangle, {X1, Y1}, {X2, Y2}, {X3, Y3}}) ->
 %% @param N must be a positive integer
 %% @returns an integer which is the sum of the bits
 %%
-bits_tail_recurse(N) when N > 0 ->
+bits(N) when N > 0 ->
     bits_tail_recurse(N, 0).
 
 bits_tail_recurse(0, P) ->
@@ -106,12 +106,12 @@ max2(_A, B) ->
 %% Unit Tests
 %%
 bits_tail_recurse_test() ->
-    [?assertEqual(3, bits_tail_recurse(7)),
-     ?assertEqual(1, bits_tail_recurse(8)),
-     ?assertEqual(1, bits_tail_recurse(1)),
+    [?assertEqual(3, bits(7)),
+     ?assertEqual(1, bits(8)),
+     ?assertEqual(1, bits(1)),
      % the assignment states that N must be positive
-     ?assertException(error, function_clause, bits_tail_recurse(0)),
-     ?assertException(error, function_clause, bits_tail_recurse(-6))
+     ?assertException(error, function_clause, bits(0)),
+     ?assertException(error, function_clause, bits(-6))
     ].
 
 bits_direct_recurse_test() ->
